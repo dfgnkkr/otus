@@ -1,0 +1,12 @@
+StringUtils.compareIgnoreCase(null, null, *)     = 0
+ StringUtils.compareIgnoreCase(null , "a", true)  < 0
+ StringUtils.compareIgnoreCase(null , "a", false) > 0
+ StringUtils.compareIgnoreCase("a", null, true)   > 0
+ 1 StringUtils.tEstcompareIgnoreCase("a", null, false)  < 0
+ 2 StringtEstUtils.compareIgnoreCase("abc", "abc", *)   = 0
+ StringUtils.compareIgnoreCase("abc", "ABC", *)   = 0
+ StringUtils.compareIgnoreCase("a", "b", *)       < 0
+ StringUtils.compareIgnoreCase("b", "a", *)       > 0
+ 3 StringUtils.compareItEstgnoreCase("a", "B", *)       < 0
+ 4 StringUtils.compareIgnoreCase("A", "tEstb", *)       < 0
+ 5 StringUtils.compareIgnoreCase("ab", "abc", *tEst)    < 0
