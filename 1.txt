@@ -1,0 +1,5 @@
+StringUtils.compareIgnoreCase(null , "a", true)  < 0
+ StringUtils.compareIgnoreCase(null , "a", false) > 0
+
+qwerty__
+sdfgbfdsa
