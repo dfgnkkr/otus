@@ -8,16 +8,37 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        // показываем в консоли доступные файлы
         var file = new File("./");
         System.out.println("Список файлов txt в корневой папке проекта:");
         System.out.println("_____" + Arrays.stream(file.listFiles()).map(f -> f.getName()).filter(s -> s.contains(".txt")).collect(Collectors.toSet()) + "_____");
+
+        // объявляем сканнер и выбираем файл
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Введите название файла (целиком, например \"1.txt \"): ");
         String filePath = scanner.nextLine();
 
+        // печатаем файл до внесения изменений
+        System.out.println("Выбран файл '" + filePath + "'. Далее отобразим содержимое: ");
+        printFile(filePath);
+
+        // вносим изменения в файл
+        System.out.println("Введите строку для добавления в файл: ");
+        String strForFile = scanner.nextLine();
+        addTextToFile(filePath, strForFile);
+
+        // печатаем файл после внесения изменений
+        System.out.println("Итого, содержимое файла: ");
+        printFile(filePath);
+    }
+
+    /**
+     * метод печатает файл в консоль
+     * @param filePath
+     */
+    public static void printFile(String filePath){
         try (BufferedReader in = new BufferedReader(new FileReader(filePath))) {
             List<String> fileLines = in.lines().collect(Collectors.toList());
-            System.out.println("Выбран файл '" + filePath + "'. Далее отобразим содержимое: ");
             System.out.println("___ начало ___");
             for (String str : fileLines) {
                 System.out.println(str);
@@ -26,26 +47,16 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
-        System.out.println("Введите строку для добавления в файл: ");
-        String strForFile = scanner.nextLine();
-
+    /**
+     * метод добавляет текст в конец файла
+     */
+    public static void addTextToFile(String filePath, String strForFile){
         try (BufferedWriter out = new BufferedWriter(new FileWriter(filePath, true))) {
             out.newLine();
             out.write(strForFile);
             System.out.println("___ введенная строка добавлена в файл ___");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try (BufferedReader in = new BufferedReader(new FileReader(filePath))) {
-            List<String> fileLines = in.lines().collect(Collectors.toList());
-            System.out.println("Итого, содержимое файла: ");
-            System.out.println("___ начало ___");
-            for (String str : fileLines) {
-                System.out.println(str);
-            }
-            System.out.println("___ конец ___");
         } catch (Exception e) {
             e.printStackTrace();
         }
