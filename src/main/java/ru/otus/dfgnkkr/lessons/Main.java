@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        sumArrayElements(randomIntegerArrayArrays());
+        System.out.println("____ вернуть сумму _____ " + sumArrayElements(randomIntegerArrayArrays()));
 
         printSquad(5);
 
@@ -25,7 +25,7 @@ public class Main {
      * Реализовать метод sumOfPositiveElements(..), принимающий в качестве аргумента целочисленный двумерный массив,
      * метод должен посчитать и вернуть сумму всех элементов массива, которые больше 0;
      */
-    public static void sumArrayElements(Integer[][] array) {
+    public static int sumArrayElements(Integer[][] array) {
         int result = 0;
 
         for (Integer[] line : array)
@@ -33,6 +33,8 @@ public class Main {
                 if (element > 0) result += element;
 
         System.out.println("_________ Сумма: " + result);
+
+        return result;
     }
 
     /**
@@ -73,7 +75,7 @@ public class Main {
      * Реализовать метод findMax(int[][] array) который должен найти и вернуть максимальный элемент массива;
      */
     public static int findMax(int[][] array) {
-        int max = 0;
+        int max = array[0][0];
 
         // строки
         for (int i = 0; i < array.length; i++) {
@@ -103,13 +105,13 @@ public class Main {
             return -1;
         }
 
-        List<Integer> line2 = Arrays.stream(array[1]).collect(Collectors.toList());
+        Integer[] line2 = array[1];
 
         for (Integer num : line2) {
             result += num;
         }
 
-        System.out.println("Полученный массив (список): " + line2);
+        System.out.println("Полученный массив (список): " + Arrays.toString(line2));
         System.out.println("_________ Сумма: " + result);
 
 
